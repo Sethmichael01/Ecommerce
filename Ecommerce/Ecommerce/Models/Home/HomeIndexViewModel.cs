@@ -1,6 +1,7 @@
 ﻿using Ecommerce.DAL;
 using Ecommerce.Repository;
 using PagedList;
+using PagedList.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
