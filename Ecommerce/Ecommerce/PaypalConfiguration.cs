@@ -15,8 +15,8 @@ namespace Ecommerce
         static PaypalConfiguration()
         {
             var config = getconfig();
-            clientId = "AYzvjs9k6whCPcZ_hTnAVsO81IW0CN0DgHPUVtk4_KLMXLfhS3C9mu5BhTew9WbYtP89F-bERc0hV5Of";
-            clientSecret = "ECEvo9p54rA3G2RRAXc2AlivJviV8mR1ZNHiganOpRf63MGBiaMYQQ_yLexEDMjYDZyM7-alXw-roytm";
+            clientId = "Abw0quvbRtD2C-LKzrOtzcFw5xN6RpG681ctnvuQcRNgLHeJhAIoSne-ZhEL8Q3nk1kILDD0-nVR05eH";
+            clientSecret = "ECq_0EYsKliU9rCfnh0AKE-FtENSUig6AkHr0Kv2EeFKULtKLg2mQxsTM4jhz5SfT3f0DjNofPJVtx7N";
         }
 
         private static Dictionary<string, string> getconfig()
