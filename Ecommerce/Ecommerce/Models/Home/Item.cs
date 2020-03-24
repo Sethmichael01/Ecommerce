@@ -1,5 +1,5 @@
-﻿using Ecommerce.DAL;
-using System;
+﻿using System;
+using Ecommerce.Dal2;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Ecommerce.Dal2;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -29,5 +30,6 @@ namespace Ecommerce.Models
         {
             return new ApplicationDbContext();
         }
+       
     }
 }

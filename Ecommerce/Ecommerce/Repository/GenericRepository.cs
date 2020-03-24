@@ -1,4 +1,5 @@
-﻿using Ecommerce.DAL;
+﻿using Ecommerce.Models;
+using Ecommerce.Dal2;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,12 +13,13 @@ namespace Ecommerce.Repository
     {
         DbSet<Tbl_Entity> _dbSet;
 
-        private DbmyOnlineShoppingEntities _DBEntity;
+        //private DbmyOnlineShoppingEntities _DBEntity;
+        private Entities _db;
 
-        public GenericRepository(DbmyOnlineShoppingEntities DBEntity)
+        public GenericRepository(Entities db)
         {
-            _DBEntity = DBEntity;
-            _dbSet = _DBEntity.Set<Tbl_Entity>();
+            _db = db;
+            _dbSet = _db.Set<Tbl_Entity>();
         }
         public IEnumerable<Tbl_Entity> GetProduct()
         {
@@ -26,7 +28,7 @@ namespace Ecommerce.Repository
         public void Add(Tbl_Entity entity)
         {
             _dbSet.Add(entity);
-            _DBEntity.SaveChanges();
+            _db.SaveChanges();
         }
 
         public int GetAllrecordCount()
@@ -63,10 +65,10 @@ namespace Ecommerce.Repository
         {
             if (parameters != null)
             {
-                return _DBEntity.Database.SqlQuery<Tbl_Entity>(query, parameters).ToList();
+                return _db.Database.SqlQuery<Tbl_Entity>(query, parameters).ToList();
             }
             else
-                return _DBEntity.Database.SqlQuery<Tbl_Entity>(query).ToList();
+                return _db.Database.SqlQuery<Tbl_Entity>(query).ToList();
         }
 
         public void InactiveAndDeleteMarkByWhereClause(Expression<Func<Tbl_Entity, bool>> wherePredict, Action<Tbl_Entity> ForEachPredict)
@@ -76,7 +78,7 @@ namespace Ecommerce.Repository
 
         public void Remove(Tbl_Entity entity)
         {
-            if (_DBEntity.Entry(entity).State == EntityState.Detached)
+            if (_db.Entry(entity).State == EntityState.Detached)
                 _dbSet.Attach(entity);
             _dbSet.Remove(entity);
         }
@@ -99,8 +101,8 @@ namespace Ecommerce.Repository
         public void Update(Tbl_Entity entity)
         {
             _dbSet.Attach(entity);
-            _DBEntity.Entry(entity).State = EntityState.Modified;
-            _DBEntity.SaveChanges();
+            _db.Entry(entity).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void UpdateByWhereClause(Expression<Func<Tbl_Entity, bool>> wherePredict, Action<Tbl_Entity> ForEachPredict)

@@ -1,16 +1,17 @@
-﻿using Ecommerce.DAL;
-using Ecommerce.Models.Home;
+﻿using Ecommerce.Models.Home;
+using Ecommerce.Dal2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ecommerce.Models;
 
 namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        DbmyOnlineShoppingEntities ctx = new DbmyOnlineShoppingEntities();
+        Entities ctx = new Entities();
         public ActionResult Index(string search, int? page)
         {
             HomeIndexViewModel model = new HomeIndexViewModel();

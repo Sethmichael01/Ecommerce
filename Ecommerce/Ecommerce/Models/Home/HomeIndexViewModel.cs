@@ -1,4 +1,4 @@
-﻿using Ecommerce.DAL;
+﻿using Ecommerce.Dal2;
 using Ecommerce.Repository;
 using PagedList;
 using PagedList.Mvc;
@@ -13,7 +13,7 @@ namespace Ecommerce.Models.Home
     public class HomeIndexViewModel
     {
         public GenericUnitOfWork _unitOfWork = new GenericUnitOfWork();
-        DbmyOnlineShoppingEntities context = new DbmyOnlineShoppingEntities();
+        Entities context = new Entities();
         public IPagedList<Tbl_Product> ListOfProducts { get; set; }
         public HomeIndexViewModel CreateModel(string search, int pageSize, int? page)
         {

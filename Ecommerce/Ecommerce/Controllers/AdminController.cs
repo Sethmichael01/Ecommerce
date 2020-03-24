@@ -1,4 +1,5 @@
-﻿using Ecommerce.DAL;
+﻿//using Ecommerce.Models.DAL;
+using Ecommerce.Dal2;
 using Ecommerce.Models;
 using Ecommerce.Repository;
 using Newtonsoft.Json;
@@ -107,6 +108,29 @@ namespace Ecommerce.Controllers
             tbl.ProductImage = pic;
             tbl.CreateDate = DateTime.Now;
             _unitOfWork.GetRepositoryInstance<Tbl_Product>().Add(tbl);
+            return RedirectToAction("Product");
+        }
+
+        //Delete Product
+        public ActionResult ProductDelete(int productId)
+        {
+            ViewBag.CategoryList = GetCategory();
+            return View(_unitOfWork.GetRepositoryInstance<Tbl_Product>().GetFirstorDefault(productId));
+        }
+        [HttpPost]
+        public ActionResult ProductDelete(Tbl_Product tbl, HttpPostedFileBase file)
+        {
+            string pic = null;
+            if (file != null)
+            {
+                pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("~/ProductImg/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+            }
+            tbl.ProductImage = file != null ? pic : tbl.ProductImage;
+            tbl.ModifiedDate = DateTime.Now;
+            _unitOfWork.GetRepositoryInstance<Tbl_Product>().Remove(tbl);
             return RedirectToAction("Product");
         }
     }

@@ -1,5 +1,6 @@
-﻿using Ecommerce.DAL;
+﻿using Ecommerce.Models;
 using System;
+using Ecommerce.Dal2;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,9 @@ namespace Ecommerce.Repository
 {
     public class GenericUnitOfWork : IDisposable
     {
-        private DbmyOnlineShoppingEntities DBEntity = new DbmyOnlineShoppingEntities();
+        private Entities DBEntity = new Entities();
+
+        //private DbmyOnlineShoppingEntities DBEntity = new DbmyOnlineShoppingEntities();
         public IRepository<Tbl_EntityType> GetRepositoryInstance<Tbl_EntityType>() where Tbl_EntityType : class
         {
             return new GenericRepository<Tbl_EntityType>(DBEntity);
